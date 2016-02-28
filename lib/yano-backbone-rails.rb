@@ -1,0 +1,1 @@
+require 'yano/backbone/rails'

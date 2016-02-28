@@ -1,0 +1,10 @@
+//= require jquery
+//= require handlebars.runtime
+//= require backbone/underscore
+//= require backbone/backbone
+//= require backbone/backbone.babysitter
+//= require backbone/backbone.radio
+//= require backbone/backbone.marionette
+//= require backbone/backbone.radio.adapter
+//= require backbone/backbone.handlebars.adapter
+//= require_self
