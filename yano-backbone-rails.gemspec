@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "railties",          ">= 4.2.0"
   spec.add_dependency "thor",              ">= 0.14", "< 2.0"
-  spec.add_dependency "yano-jquery-rails", "~> 0.0.2"
+  spec.add_dependency "yano-jquery-rails", "~> 0.0.3"
   spec.add_dependency "handlebars_assets", "~> 0.23.0"
 
   spec.add_development_dependency "bundler", "~> 1.11"
