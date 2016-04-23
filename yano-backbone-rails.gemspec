@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "Use BackboneJS with Rails 4+"
   spec.description   = "This gem provides UnderscoreJS, BackboneJS and MarionetteJS for your Rails 4+ application"
-  spec.homepage      = "http://rubygems.org/gems/yano-jquery-rails"
+  spec.homepage      = "http://rubygems.org/gems/yano-backbone-rails"
   spec.license       = "MIT"
 
   spec.required_ruby_version     = ">= 1.9.3"
