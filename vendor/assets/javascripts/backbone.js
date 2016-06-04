@@ -1,6 +1,6 @@
 //= require jquery
 //= require handlebars.runtime
-//= require backbone/underscore
+//= require underscore/underscore
 //= require backbone/backbone
 //= require backbone/backbone.babysitter
 //= require backbone/backbone.radio
