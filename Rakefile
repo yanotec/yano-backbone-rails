@@ -6,7 +6,7 @@ GEM_ROOT = Pathname.new File.expand_path('../',  __FILE__)
 ASSETS_PATH = Pathname.new File.expand_path('vendor/assets/',  GEM_ROOT)
 
 desc "Update all assets"
-task :update => %w(update:underscore)
+task :update => %w(update:underscore update:backbone)
 
 namespace :update do
   desc "Update underscore assets"
@@ -46,6 +46,48 @@ namespace :update do
       puts `mkdir -p ./source_maps`
       puts "curl -o ./source_maps/underscore.min.map https://raw.githubusercontent.com/jashkenas/underscore/#{version}/underscore-min.map"
       puts `curl -o ./source_maps/underscore.min.map https://raw.githubusercontent.com/jashkenas/underscore/#{version}/underscore-min.map`
+    end
+
+    puts "\e[32mDone!\e[0m"
+  end
+
+  desc "Update backbone assets"
+  task :backbone do
+    version = Yano::Backbone::Rails::BACKBONE_VERSION
+
+    Dir.chdir ASSETS_PATH do
+      puts "Cleaning temp folder"
+      ["rm -rf ", "mkdir -p "].each do |cmd|
+        puts "#{cmd} ./javascripts/backbone"
+        puts `#{cmd} ./javascripts/backbone`
+      end
+
+      puts "Downloading backbone.js"
+      puts "curl -o ./javascripts/backbone/backbone.js https://raw.githubusercontent.com/jashkenas/backbone/#{version}/backbone.js"
+      puts `curl -o ./javascripts/backbone/backbone.js https://raw.githubusercontent.com/jashkenas/backbone/#{version}/backbone.js`
+
+      puts "Downloading backbone.min.js"
+      puts "curl -o ./javascripts/backbone/backbone.min.js https://raw.githubusercontent.com/jashkenas/backbone/#{version}/backbone-min.js"
+      puts `curl -o ./javascripts/backbone/backbone.min.js https://raw.githubusercontent.com/jashkenas/backbone/#{version}/backbone-min.js`
+      File.open('./javascripts/backbone/backbone.min.js', 'r') do |file|
+        File.open("./javascripts/backbone/backbone.min.js.erb", 'w') do |new_file|
+          while (line = file.gets)
+            if line =~ /sourceMappingURL/
+              line = line.gsub("backbone-min.map", "<%= asset_path 'backbone.min.map' %>")
+            end
+
+            new_file.puts line
+          end
+        end
+      end
+      puts "rm -f ./javascripts/backbone/backbone.min.js"
+      puts `rm -f ./javascripts/backbone/backbone.min.js`
+
+      puts "Downloading backbone.min.map"
+      puts "mkdir -p ./source_maps"
+      puts `mkdir -p ./source_maps`
+      puts "curl -o ./source_maps/backbone.min.map https://raw.githubusercontent.com/jashkenas/backbone/#{version}/backbone-min.map"
+      puts `curl -o ./source_maps/backbone.min.map https://raw.githubusercontent.com/jashkenas/backbone/#{version}/backbone-min.map`
     end
 
     puts "\e[32mDone!\e[0m"
