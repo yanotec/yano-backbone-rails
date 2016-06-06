@@ -88,17 +88,13 @@ namespace :update do
       puts `mkdir -p ./source_maps`
       puts "curl -o ./source_maps/backbone.min.map https://raw.githubusercontent.com/jashkenas/backbone/#{version}/backbone-min.map"
       puts `curl -o ./source_maps/backbone.min.map https://raw.githubusercontent.com/jashkenas/backbone/#{version}/backbone-min.map`
-
-      puts "Downloading backbone.handlebars.adapter.js"
-      puts "curl -o ./javascripts/backbone/backbone.handlebars.adapter.js https://gist.githubusercontent.com/jonathanccalixto/a3223950577e9de3d3e00acc1f3ee5f2/raw/ea88cccbe3bcbb8c3a0bdb17a6683e4d58a353c4/backbone.handlebars.adapter.js"
-      puts `curl -o ./javascripts/backbone/backbone.handlebars.adapter.js https://gist.githubusercontent.com/jonathanccalixto/a3223950577e9de3d3e00acc1f3ee5f2/raw/ea88cccbe3bcbb8c3a0bdb17a6683e4d58a353c4/backbone.handlebars.adapter.js`
     end
 
     puts "\e[32mDone!\e[0m"
   end
 
   desc "Update Backbone marionette assets and dependencies"
-  task :marionette => %w(marionette:clear marionette:babysitter marionette:radio) do
+  task :marionette => %w(marionette:clear marionette:babysitter marionette:radio marionette:adapters) do
     Dir.chdir ASSETS_PATH do
       version = Yano::Backbone::Rails::MARIONETTE_VERSION
 
@@ -205,11 +201,19 @@ namespace :update do
           puts `mkdir -p ./source_maps`
           puts "curl -o ./source_maps/#{filename}.map https://raw.githubusercontent.com/marionettejs/backbone.babysitter/v#{version}/lib/#{filename}.map"
           puts `curl -o ./source_maps/#{filename}.map https://raw.githubusercontent.com/marionettejs/backbone.babysitter/v#{version}/lib/#{filename}.map`
-
-          puts "Downloading backbone.radio.adapter.js"
-          puts "curl -o ./javascripts/marionette/backbone.radio.adapter.js https://gist.githubusercontent.com/jmeas/7992474cdb1c5672d88b/raw/92b9be3a72571bd5761d88179efb0e9b1e40a245/radio.shim.js"
-          puts `curl -o ./javascripts/marionette/backbone.radio.adapter.js https://gist.githubusercontent.com/jmeas/7992474cdb1c5672d88b/raw/92b9be3a72571bd5761d88179efb0e9b1e40a245/radio.shim.js`
         end
+      end
+    end
+
+    task :adapters do
+      Dir.chdir ASSETS_PATH do
+        puts "Downloading backbone.radio.adapter.js"
+        puts "curl -o ./javascripts/marionette/backbone.radio.adapter.js https://gist.githubusercontent.com/jmeas/7992474cdb1c5672d88b/raw/92b9be3a72571bd5761d88179efb0e9b1e40a245/radio.shim.js"
+        puts `curl -o ./javascripts/marionette/backbone.radio.adapter.js https://gist.githubusercontent.com/jmeas/7992474cdb1c5672d88b/raw/92b9be3a72571bd5761d88179efb0e9b1e40a245/radio.shim.js`
+
+        puts "Downloading backbone.handlebars.adapter.js"
+        puts "curl -o ./javascripts/marionette/backbone.handlebars.adapter.js https://gist.githubusercontent.com/jonathanccalixto/a3223950577e9de3d3e00acc1f3ee5f2/raw/ea88cccbe3bcbb8c3a0bdb17a6683e4d58a353c4/backbone.handlebars.adapter.js"
+        puts `curl -o ./javascripts/marionette/backbone.handlebars.adapter.js https://gist.githubusercontent.com/jonathanccalixto/a3223950577e9de3d3e00acc1f3ee5f2/raw/ea88cccbe3bcbb8c3a0bdb17a6683e4d58a353c4/backbone.handlebars.adapter.js`
       end
     end
   end
