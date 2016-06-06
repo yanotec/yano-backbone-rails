@@ -1,7 +1,7 @@
 module Yano
   module Backbone
     module Rails
-      VERSION = "1.0.2"
+      VERSION = "1.0.3"
       UNDERSCORE_VERSION = "1.8.3"
       BACKBONE_VERSION = "1.3.3"
       MARIONETTE_VERSION = "2.4.7"
