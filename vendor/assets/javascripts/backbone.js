@@ -2,9 +2,9 @@
 //= require handlebars.runtime
 //= require underscore/underscore
 //= require backbone/backbone
-//= require backbone/backbone.handlebars.adapter
 //= require marionette/backbone.babysitter
 //= require marionette/backbone.radio
 //= require marionette/backbone.marionette
 //= require marionette/backbone.radio.adapter
+//= require marionette/backbone.handlebars.adapter
 //= require_self
