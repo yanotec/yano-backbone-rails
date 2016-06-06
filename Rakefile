@@ -199,8 +199,8 @@ namespace :update do
           puts "Downloading #{filename}.map"
           puts "mkdir -p ./source_maps"
           puts `mkdir -p ./source_maps`
-          puts "curl -o ./source_maps/#{filename}.map https://raw.githubusercontent.com/marionettejs/backbone.babysitter/v#{version}/lib/#{filename}.map"
-          puts `curl -o ./source_maps/#{filename}.map https://raw.githubusercontent.com/marionettejs/backbone.babysitter/v#{version}/lib/#{filename}.map`
+          puts "curl -o ./source_maps/#{filename}.map https://raw.githubusercontent.com/marionettejs/backbone.radio/v#{version}/build/#{filename}.map"
+          puts `curl -o ./source_maps/#{filename}.map https://raw.githubusercontent.com/marionettejs/backbone.radio/v#{version}/build/#{filename}.map`
         end
       end
     end
