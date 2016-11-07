@@ -94,7 +94,7 @@ namespace :update do
   end
 
   desc "Update Backbone marionette assets and dependencies"
-  task :marionette => %w(marionette:clear marionette:babysitter marionette:radio marionette:adapters) do
+  task :marionette => %w(marionette:clear marionette:radio marionette:adapters) do
     Dir.chdir ASSETS_PATH do
       version = Yano::Backbone::Rails::MARIONETTE_VERSION
 
@@ -131,43 +131,17 @@ namespace :update do
 
   namespace :marionette do
     task :clear do
-      puts "Cleaning temp folder"
-      ["rm -rf ", "mkdir -p "].each do |cmd|
-        puts "#{cmd} ./javascripts/marionette"
-        puts `#{cmd} ./javascripts/marionette`
-      end
-    end
-
-    task :babysitter do
       Dir.chdir ASSETS_PATH do
-        version = Yano::Backbone::Rails::BABYSITTER_VERSION
-
-        puts "Downloading babysitter.js"
-        puts "curl -o ./javascripts/marionette/backbone.babysitter.js https://raw.githubusercontent.com/marionettejs/backbone.babysitter/v#{version}/lib/backbone.babysitter.js"
-        puts `curl -o ./javascripts/marionette/backbone.babysitter.js https://raw.githubusercontent.com/marionettejs/backbone.babysitter/v#{version}/lib/backbone.babysitter.js`
-
-        puts "Downloading babysitter.min.js"
-        puts "curl -o ./javascripts/marionette/backbone.babysitter.min.js https://raw.githubusercontent.com/marionettejs/backbone.babysitter/v#{version}/lib/backbone.babysitteri.min.js"
-        puts `curl -o ./javascripts/marionette/backbone.babysitter.min.js https://raw.githubusercontent.com/marionettejs/backbone.babysitter/v#{version}/lib/backbone.babysitter.min.js`
-        File.open('./javascripts/marionette/backbone.babysitter.min.js', 'r') do |file|
-          File.open("./javascripts/marionette/backbone.babysitter.min.js.erb", 'w') do |new_file|
-            while (line = file.gets)
-              if line =~ /sourceMappingURL/
-                line = line.gsub("backbone.babysitter.min.js.map", "<%= asset_path 'backbone.babysitter.min.js.map' %>")
-              end
-
-              new_file.puts line
-            end
-          end
+        puts "Cleaning temp folder"
+        ["rm -rf ", "mkdir -p "].each do |cmd|
+          puts "#{cmd} ./javascripts/marionette"
+          puts `#{cmd} ./javascripts/marionette`
         end
-        puts "rm -f ./javascripts/marionette/backbone.babysitter.min.js"
-        puts `rm -f ./javascripts/marionette/backbone.babysitter.min.js`
 
-        puts "Downloading babysitter.min.map"
-        puts "mkdir -p ./source_maps"
-        puts `mkdir -p ./source_maps`
-        puts "curl -o ./source_maps/backbone.babysitter.min.js.map https://raw.githubusercontent.com/marionettejs/backbone.babysitter/v#{version}/lib/backbone.babysitter.min.js.map"
-        puts `curl -o ./source_maps/backbone.babysitter.min.js.map https://raw.githubusercontent.com/marionettejs/backbone.babysitter/v#{version}/lib/backbone.babysitter.min.js.map`
+        puts "touch javascripts/marionette/.keep"
+        puts `touch javascripts/marionette/.keep`
+        puts "touch source_maps/.keep"
+        puts `touch source_maps/.keep`
       end
     end
 
@@ -207,10 +181,6 @@ namespace :update do
 
     task :adapters do
       Dir.chdir ASSETS_PATH do
-        puts "Downloading backbone.radio.adapter.js"
-        puts "curl -o ./javascripts/marionette/backbone.radio.adapter.js https://gist.githubusercontent.com/jmeas/7992474cdb1c5672d88b/raw/92b9be3a72571bd5761d88179efb0e9b1e40a245/radio.shim.js"
-        puts `curl -o ./javascripts/marionette/backbone.radio.adapter.js https://gist.githubusercontent.com/jmeas/7992474cdb1c5672d88b/raw/92b9be3a72571bd5761d88179efb0e9b1e40a245/radio.shim.js`
-
         puts "Downloading backbone.handlebars.adapter.js"
         puts "curl -o ./javascripts/marionette/backbone.handlebars.adapter.js https://gist.githubusercontent.com/jonathanccalixto/a3223950577e9de3d3e00acc1f3ee5f2/raw/ea88cccbe3bcbb8c3a0bdb17a6683e4d58a353c4/backbone.handlebars.adapter.js"
         puts `curl -o ./javascripts/marionette/backbone.handlebars.adapter.js https://gist.githubusercontent.com/jonathanccalixto/a3223950577e9de3d3e00acc1f3ee5f2/raw/ea88cccbe3bcbb8c3a0bdb17a6683e4d58a353c4/backbone.handlebars.adapter.js`
