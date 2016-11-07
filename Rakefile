@@ -99,12 +99,12 @@ namespace :update do
       version = Yano::Backbone::Rails::MARIONETTE_VERSION
 
       puts "Downloading marionette.js"
-      puts "curl -o ./javascripts/marionette/backbone.marionette.js https://raw.githubusercontent.com/marionettejs/backbone.marionette/v#{version}/lib/core/backbone.marionette.js"
-      puts `curl -o ./javascripts/marionette/backbone.marionette.js https://raw.githubusercontent.com/marionettejs/backbone.marionette/v#{version}/lib/core/backbone.marionette.js`
+      puts "curl -o ./javascripts/marionette/backbone.marionette.js https://raw.githubusercontent.com/marionettejs/backbone.marionette/v#{version}/lib/backbone.marionette.js"
+      puts `curl -o ./javascripts/marionette/backbone.marionette.js https://raw.githubusercontent.com/marionettejs/backbone.marionette/v#{version}/lib/backbone.marionette.js`
 
       puts "Downloading marionette.min.js"
-      puts "curl -o ./javascripts/marionette/backbone.marionette.min.js https://raw.githubusercontent.com/marionettejs/backbone.marionette/v#{version}/lib/core/backbone.marionette.min.js"
-      puts `curl -o ./javascripts/marionette/backbone.marionette.min.js https://raw.githubusercontent.com/marionettejs/backbone.marionette/v#{version}/lib/core/backbone.marionette.min.js`
+      puts "curl -o ./javascripts/marionette/backbone.marionette.min.js https://raw.githubusercontent.com/marionettejs/backbone.marionette/v#{version}/lib/backbone.marionette.min.js"
+      puts `curl -o ./javascripts/marionette/backbone.marionette.min.js https://raw.githubusercontent.com/marionettejs/backbone.marionette/v#{version}/lib/backbone.marionette.min.js`
       File.open('./javascripts/marionette/backbone.marionette.min.js', 'r') do |file|
         File.open("./javascripts/marionette/backbone.marionette.min.js.erb", 'w') do |new_file|
           while (line = file.gets)
@@ -122,8 +122,8 @@ namespace :update do
       puts "Downloading backbone.min.map"
       puts "mkdir -p ./source_maps"
       puts `mkdir -p ./source_maps`
-      puts "curl -o ./source_maps/backbone.marionette.min.js.map https://raw.githubusercontent.com/marionettejs/backbone.marionette/v#{version}/lib/core/backbone.marionette.min.js.map"
-      puts `curl -o ./source_maps/backbone.marionette.min.js.map https://raw.githubusercontent.com/marionettejs/backbone.marionette/v#{version}/lib/core/backbone.marionette.min.js.map`
+      puts "curl -o ./source_maps/backbone.marionette.min.js.map https://raw.githubusercontent.com/marionettejs/backbone.marionette/v#{version}/lib/backbone.marionette.min.js.map"
+      puts `curl -o ./source_maps/backbone.marionette.min.js.map https://raw.githubusercontent.com/marionettejs/backbone.marionette/v#{version}/lib/backbone.marionette.min.js.map`
     end
 
     puts "\e[32mDone!\e[0m"
